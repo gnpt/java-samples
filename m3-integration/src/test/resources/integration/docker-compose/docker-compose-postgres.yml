@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15.7
+    environment:
+      - POSTGRES_DB=test-db
+      - POSTGRES_USER=test-user
+      - POSTGRES_PASSWORD=test-password
+    command: postgres -p 5432 -c 'max_connections=1000'
+    ports:
+      - "15432:5432"

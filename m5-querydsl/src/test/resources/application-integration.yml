@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:15432/test-db?currentSchema=public
+    driverClassName: org.postgresql.Driver
+    username: test-user
+    password: test-password
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        ddl-auto: validate
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
