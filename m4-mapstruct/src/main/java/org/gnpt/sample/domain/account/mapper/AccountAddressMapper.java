@@ -1,6 +1,6 @@
-package org.gnpt.sample.mapper;
+package org.gnpt.sample.domain.account.mapper;
 
-import org.gnpt.sample.model.AccountAddress;
+import org.gnpt.sample.domain.account.model.AccountAddress;
 import org.mapstruct.Mapper;
 
 @Mapper

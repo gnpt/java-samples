@@ -1,4 +1,4 @@
-package org.gnpt.sample.model.dto;
+package org.gnpt.sample.domain.account.model.dto;
 
 import lombok.Data;
 

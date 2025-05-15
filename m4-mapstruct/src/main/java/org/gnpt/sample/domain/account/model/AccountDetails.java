@@ -1,4 +1,4 @@
-package org.gnpt.sample.model;
+package org.gnpt.sample.domain.account.model;
 
 import lombok.Builder;
 import lombok.Data;

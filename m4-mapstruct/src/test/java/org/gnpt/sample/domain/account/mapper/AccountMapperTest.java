@@ -1,12 +1,12 @@
-package org.gnpt.sample.mapper;
+package org.gnpt.sample.domain.account.mapper;
 
 import org.assertj.core.api.Assertions;
-import org.gnpt.sample.model.Account;
-import org.gnpt.sample.model.AccountAddress;
-import org.gnpt.sample.model.AccountContacts;
-import org.gnpt.sample.model.AccountDetails;
-import org.gnpt.sample.model.Order;
-import org.gnpt.sample.model.dto.AccountDto;
+import org.gnpt.sample.domain.account.model.Account;
+import org.gnpt.sample.domain.account.model.AccountAddress;
+import org.gnpt.sample.domain.account.model.AccountContacts;
+import org.gnpt.sample.domain.account.model.AccountDetails;
+import org.gnpt.sample.domain.account.model.Order;
+import org.gnpt.sample.domain.account.model.dto.AccountDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -38,6 +38,7 @@ class AccountMapperTest {
                 ACCOUNT_NAME_1,
                 AccountDetails.builder()
                         .balance(-10)
+                        .age(25)
                         .build(),
                 List.of(new Order(ORDER_CODE_1), new Order(ORDER_CODE_2)),
                 LocalDate.of(2023, Month.JANUARY, 18).atStartOfDay(ZoneId.systemDefault()).toInstant(),
@@ -52,7 +53,6 @@ class AccountMapperTest {
                         ACCOUNT_NAME_2,
                         AccountDetails.builder()
                                 .balance(100)
-                                .age(40)
                                 .build(),
                         Collections.emptyList(),
                         LocalDate.of(2023, Month.MARCH, 10).atStartOfDay(ZoneId.systemDefault()).toInstant(),
@@ -62,6 +62,7 @@ class AccountMapperTest {
         Assertions.assertThat(accountDtos.get(1).getName()).isEqualTo(ACCOUNT_NAME_2);
         Assertions.assertThat(accountDtos.get(1).getOrders()).isEmpty();
         Assertions.assertThat(accountDtos.get(1).isActive()).isTrue();
+        Assertions.assertThat(accountDtos.get(1).getAge()).isNull();
         Assertions.assertThat(accountDtos.get(1).getContacts().getAddress()).isNull();
         Assertions.assertThat(accountDtos.get(1).getContacts().getEmail()).isEqualTo("example@mail.org");
     }
@@ -69,6 +70,7 @@ class AccountMapperTest {
     private void makeAssertions(AccountDto accountDto) {
         Assertions.assertThat(accountDto.getName()).isEqualTo(ACCOUNT_NAME_1);
         Assertions.assertThat(accountDto.isActive()).isFalse();
+        Assertions.assertThat(accountDto.getAge()).isEqualTo(25);
         Assertions.assertThat(accountDto.getCreatedAt()).isEqualTo("17.01.2023 21:00:00");
         Assertions.assertThat(accountDto.getOrders()).hasSize(2);
         Assertions.assertThat(accountDto.getOrders().get(0).getCode()).isEqualTo(ORDER_CODE_1);

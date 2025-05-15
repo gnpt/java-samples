@@ -1,7 +1,8 @@
-package org.gnpt.sample.mapper;
+package org.gnpt.sample.domain.account.mapper;
 
-import org.gnpt.sample.model.Account;
-import org.gnpt.sample.model.dto.AccountDto;
+import org.gnpt.sample.domain.account.model.Account;
+import org.gnpt.sample.domain.account.model.dto.AccountDto;
+import org.gnpt.sample.domain.common.mapper.CommonMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -13,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
         uses = AccountAddressMapper.class)
-public abstract class AccountMapper extends CommonMapper<Account, AccountDto> {
+public abstract class AccountMapper implements CommonMapper<Account, AccountDto> {
 
     @Autowired
     private DateTimeFormatter accountDateTimeFormatter;
